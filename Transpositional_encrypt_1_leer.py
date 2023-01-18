@@ -270,13 +270,14 @@ def DisrColTransKey2Changed(var, index, mode):
 # It is invoked, when the cipher mode is selected or
 # the keyword is changed.
 def ADFGVXKeyChanged(var, index, mode):
-    '''plain = NormalizeText(PrepareForEncryption())
+    plain = NormalizeText(PrepareForEncryption())
     Key = NormalizeText(ADFGVXKey.get(), strict = True)
     if Key != ADFGVXKey.get():
         ADFGVXKey.set(Key)
-    pass
+    cipher = encryptionFile.adfgvx(plain, Key)
+
     TextCiph.insert("1.0", cipher)
-    TextExplanation.insert("1.0", explanation)'''
+    #TextExplanation.insert("1.0", explanation)
 
 # The window is divided into three frames.
 FramePlain = ttk.Frame(master = root)

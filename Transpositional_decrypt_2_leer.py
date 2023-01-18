@@ -2,6 +2,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 
+import encryptionFile
+
 # An object (root) is created which represents the window.
 # Its title and full screen property are set.
 root = tk.Tk()
@@ -137,9 +139,9 @@ def PrepareForDecryption():
 # This function decrypts the text contained in the left
 # text field, assuming the reverse cipher was applied.
 def DoReverseCipher():
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     pass
-    TextPlain.insert("1.0", plain)
+    TextPlain.insert("1.0", plain)'''
 
 # This function decrypts the text contained in the left
 # text field, assuming it was encrypted using a skytale.
@@ -149,10 +151,10 @@ def DoReverseCipher():
 # diagonally to explain how the ciphertext would have
 # been obtained.
 def SkytaleDiameterChanged():
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     pass
     TextPlain.insert("1.0", plain)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function decrypts the text contained in the left
 # text field, assuming it was encrypted by use of the
@@ -163,10 +165,10 @@ def SkytaleDiameterChanged():
 # It is invoked, when the cipher mode is selected or when
 # the number of lines of the zig-zag pattern is changed.
 def RailLinesChanged():
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     pass
     TextPlain.insert("1.0", plain)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function decrypts the text contained in the left
 # text field, assuming it was encrypted by use of the
@@ -182,12 +184,12 @@ def RailLinesChanged():
 # RailFormatTexts prints the explanatory text and
 # picks its characters to find the plaintext.
 def RedefenceKeyChanged(var, index, mode):
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     Key = NormalizeText(RedefenceKey.get(), strict = True)
     RedefenceKey.set(Key)
     pass
     TextPlain.insert("1.0", plain)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function decrypts the text contained in the left
 # text field, assuming it was encrypted by use of the
@@ -195,10 +197,10 @@ def RedefenceKeyChanged(var, index, mode):
 # It is invoked, when the cipher mode is selected or when
 # the block size or the angle of rotation are changed.
 def RotationChanged():
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     pass
     TextPlain.insert("1.0", plain)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function is invoked when the Myszkowski check
 # box is altered. It simulates a change of the key.
@@ -218,7 +220,7 @@ def DoubleColTransChanged(var, index, mode):
 # It is invoked, when the cipher mode is selected or the
 # keyword is changed or the state of one of the check boxes.
 def ColTransKeyChanged(var, index, mode):
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     Key1 = NormalizeText(ColTransKey1.get(), strict = True)
     if Key1 != ColTransKey1.get():
         ColTransKey1.set(Key1)
@@ -227,7 +229,7 @@ def ColTransKeyChanged(var, index, mode):
         ColTransKey2.set(Key2)
     pass
     TextPlain.insert("1.0", plain)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function decrypts the text contained in the left
 # text field, assuming it was encrypted by use of the
@@ -236,13 +238,13 @@ def ColTransKeyChanged(var, index, mode):
 # It is invoked, when the cipher mode is selected or the
 # keyword is changed.
 def DisrColTransKeyChanged(var, index, mode):
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     Key = NormalizeText(DisrColTransKey.get(), strict = True)
     if Key != DisrColTransKey.get():
         DisrColTransKey.set(Key)
     pass
     TextPlain.insert("1.0", plain)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function decrypts the text contained in the left
 # text field, assuming it was encrypted by use of the
@@ -251,7 +253,7 @@ def DisrColTransKeyChanged(var, index, mode):
 # It is invoked, when the cipher mode is selected or one
 # of the keywords is changed.
 def DisrColTransKey2Changed(var, index, mode):
-    cipher = PrepareForDecryption()
+    '''cipher = PrepareForDecryption()
     Key1 = NormalizeText(DisrColTransKey2.get(), strict = True)
     if Key1 != DisrColTransKey2.get():
         DisrColTransKey2.set(Key1)
@@ -260,7 +262,7 @@ def DisrColTransKey2Changed(var, index, mode):
         DisrColTransKey2Num.set(Key2)
     pass
     TextPlain.insert("1.0", plain)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function decrypts the text contained in the left
 # text field, assuming it was encrypted by use of the
@@ -273,6 +275,8 @@ def ADFGVXKeyChanged(var, index, mode):
     if Key != ADFGVXKey.get():
         ADFGVXKey.set(Key)
     pass
+    plain = encryptionFile.adfgvx_decryption(cipher, Key)
+    explanation = encryptionFile.adfgvx_encryption_explination(plain, Key)
     TextPlain.insert("1.0", plain)
     TextExplanation.insert("1.0", explanation)
 

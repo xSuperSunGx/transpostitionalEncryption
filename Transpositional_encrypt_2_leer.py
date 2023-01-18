@@ -2,6 +2,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 
+import encryptionFile
+
 # An object (root) is created which represents the window.
 # Its title and full screen property are set.
 root = tk.Tk()
@@ -135,9 +137,9 @@ def PrepareForEncryption():
 # This function encrypts the text contained in the left
 # text field, by use of the reverse cipher.
 def DoReverseCipher():
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     pass
-    TextCiph.insert("1.0", cipher)
+    TextCiph.insert("1.0", cipher)'''
 
 # This function encrypts the text contained in the left
 # text field, imitating the skytale.
@@ -146,10 +148,10 @@ def DoReverseCipher():
 # In the explanation text field, the letters are printed
 # diagonally to explain how the ciphertext is obtained.
 def SkytaleDiameterChanged():
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     pass
     TextCiph.insert("1.0", cipher)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function encrypts the text contained in the left
 # text field, by use of the rail fence.
@@ -158,10 +160,10 @@ def SkytaleDiameterChanged():
 # In the explanation text field, the letters are printed
 # in zig-zag to explain how the ciphertext is obtained.
 def RailLinesChanged():
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     pass
     TextCiph.insert("1.0", cipher)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function encrypts the text contained in the left
 # text field, by use of the redefence cipher.
@@ -171,22 +173,22 @@ def RailLinesChanged():
 # in zig-zag with preceding keyword letters to explain
 # how the ciphertext is obtained.
 def RedefenceKeyChanged(var, index, mode):
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     Key = NormalizeText(RedefenceKey.get(), strict = True)
     RedefenceKey.set(Key)
     pass
     TextCiph.insert("1.0", cipher_str)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function encrypts the text contained in the left
 # text field, by use of the rotation cipher.
 # It is invoked, when the cipher mode is selected or when
 # the block size or the angle of rotation are changed.
 def RotationChanged():
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     pass
     TextCiph.insert("1.0", cipher)
-    TextExplanation.insert("1.0", explanation.strip())
+    TextExplanation.insert("1.0", explanation.strip())'''
 
 # This function is invoked when the Myszkowski check
 # box is altered. It simulates a change of the key.
@@ -205,7 +207,7 @@ def DoubleColTransChanged(var, index, mode):
 # It is invoked, when the cipher mode is selected or the
 # keyword is changed or the state of one of the check boxes.
 def ColTransKeyChanged(var, index, mode):
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     Key1 = NormalizeText(ColTransKey1.get(), strict = True)
     if Key1 != ColTransKey1.get():
         ColTransKey1.set(Key1)
@@ -214,7 +216,7 @@ def ColTransKeyChanged(var, index, mode):
         ColTransKey2.set(Key2)
     pass
     TextCiph.insert("1.0", cipher)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function encrypts the text contained in the left
 # text field, by use of the disrupted columnar
@@ -226,13 +228,13 @@ def ColTransKeyChanged(var, index, mode):
 # It is invoked, when the cipher mode is selected or the
 # keyword is changed.
 def DisrColTransKeyChanged(var, index, mode):
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     Key = NormalizeText(DisrColTransKey.get(), strict = True)
     if Key != DisrColTransKey.get():
         DisrColTransKey.set(Key)
     pass
     TextCiph.insert("1.0", cipher)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function encrypts the text contained in the left
 # text field, by use of the disrupted columnar
@@ -243,7 +245,7 @@ def DisrColTransKeyChanged(var, index, mode):
 # It is invoked, when the cipher mode is selected or one
 # of the keywords is changed.
 def DisrColTransKey2Changed(var, index, mode):
-    plain = PrepareForEncryption()
+    '''plain = PrepareForEncryption()
     Key1 = NormalizeText(DisrColTransKey2.get(), strict = True)
     if Key1 != DisrColTransKey2.get():
         DisrColTransKey2.set(Key1)
@@ -252,7 +254,7 @@ def DisrColTransKey2Changed(var, index, mode):
         DisrColTransKey2Num.set(Key2)
     pass
     TextCiph.insert("1.0", cipher)
-    TextExplanation.insert("1.0", explanation)
+    TextExplanation.insert("1.0", explanation)'''
 
 # This function encrypts the text contained in the left
 # text field, by use of the ADFGVX cipher.
@@ -266,9 +268,12 @@ def ADFGVXKeyChanged(var, index, mode):
     Key = NormalizeText(ADFGVXKey.get(), strict = True)
     if Key != ADFGVXKey.get():
         ADFGVXKey.set(Key)
-    pass
+    cipher = encryptionFile.adfgvx_encryption(plain, Key)
+    explanation = encryptionFile.adfgvx_encryption_explination(plain, Key)
     TextCiph.insert("1.0", cipher)
     TextExplanation.insert("1.0", explanation)
+    if len(Key) < 2:
+        LabelMethodFeedback["text"] = "The keyword must have at least two letters."
 
 # The window is divided into three frames.
 FramePlain = ttk.Frame(master = root)
